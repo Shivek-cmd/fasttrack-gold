@@ -127,7 +127,7 @@ export default function AboutPage() {
             {sections.map((s, i) => {
               const Icon = s.icon
               return (
-                <AnimatedSection key={s.id} delay={i * 0.12} id={s.id}>
+                <AnimatedSection key={s.id} delay={i * 0.12}>
                   <div className="p-8 rounded-2xl bg-bg border border-border hover:border-primary/20 transition-colors h-full">
                     <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center mb-5`}>
                       <Icon className={`w-6 h-6 ${s.color}`} />
