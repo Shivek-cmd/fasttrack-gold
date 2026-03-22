@@ -1,0 +1,14 @@
+'use client'
+import { useState, useEffect } from 'react'
+
+export function useScrollY() {
+  const [scrollY, setScrollY] = useState(0)
+
+  useEffect(() => {
+    const handle = () => setScrollY(window.scrollY)
+    window.addEventListener('scroll', handle, { passive: true })
+    return () => window.removeEventListener('scroll', handle)
+  }, [])
+
+  return scrollY
+}
