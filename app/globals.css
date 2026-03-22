@@ -215,3 +215,33 @@ body {
   border-radius: var(--radius-xs);
   font-size: 0.875em;
 }
+
+/* ── Hero overlays — theme-aware ───────────────────────── */
+/* Dark: heavy black base so text pops on photo */
+.dark-overlay {
+  background: rgba(0, 0, 0, 0.65);
+}
+/* Light: warm cream tint so photo is softened but visible */
+[data-theme="light"] .dark-overlay {
+  background: rgba(250, 249, 245, 0.60);
+}
+
+/* Left→right: solid bg colour on left, fades right — follows theme */
+.hero-gradient-lr {
+  background: linear-gradient(
+    to right,
+    var(--color-bg) 0%,
+    color-mix(in srgb, var(--color-bg) 75%, transparent) 50%,
+    transparent 100%
+  );
+}
+
+/* Bottom→top: solid bg at bottom edge — follows theme */
+.hero-gradient-bt {
+  background: linear-gradient(
+    to top,
+    var(--color-bg) 0%,
+    color-mix(in srgb, var(--color-bg) 25%, transparent) 35%,
+    transparent 100%
+  );
+}

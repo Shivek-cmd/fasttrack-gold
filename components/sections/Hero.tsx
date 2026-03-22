@@ -17,15 +17,13 @@ export default function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        {/* Strong dark base over entire image */}
-        <div className="absolute inset-0 bg-black/65" />
-        {/* Left column — near-solid so headline text sits on pure dark */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#080807] via-[#080807]/85 to-transparent" />
-        {/* Bottom fade into page */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080807] via-transparent to-[#080807]/30" />
+        {/* Dark mode overlays */}
+        <div className="absolute inset-0 [data-theme='dark'] bg-black/65 dark-overlay" />
+        <div className="absolute inset-0 hero-gradient-lr" />
+        <div className="absolute inset-0 hero-gradient-bt" />
       </div>
 
-      {/* Subtle gold glow behind headline */}
+      {/* Subtle gold glow */}
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[400px] rounded-full bg-primary/6 blur-[100px] pointer-events-none" />
 
       {/* Content */}
@@ -47,7 +45,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display font-semibold leading-[1.08] tracking-[-0.03em] text-white mb-6"
+            className="font-display font-semibold leading-[1.08] tracking-[-0.03em] text-text mb-6"
             style={{ fontSize: 'clamp(3rem, 7vw, 6.5rem)' }}
           >
             The World&apos;s
@@ -62,7 +60,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-white/70 text-lg leading-relaxed max-w-prose mb-10"
+            className="text-muted text-lg leading-relaxed max-w-prose mb-10"
           >
             Comercializadora Fast Track Gold S.A.S. connects certified Colombian mineral suppliers
             with global buyers — with full legal compliance, secure logistics, and uncompromising
@@ -85,7 +83,7 @@ export default function Hero() {
             </Link>
             <Link
               href="/products/oro"
-              className="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg border border-white/20 hover:border-primary text-white font-medium text-base transition-colors hover:bg-white/5"
+              className="inline-flex items-center justify-center gap-2 h-14 px-10 rounded-lg border border-border hover:border-primary text-text font-medium text-base transition-colors hover:bg-bg-secondary"
             >
               View Products
             </Link>
@@ -96,12 +94,12 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="flex flex-wrap items-center gap-5 mt-12 pt-8 border-t border-white/10"
+            className="flex flex-wrap items-center gap-5 mt-12 pt-8 border-t border-border"
           >
             {['Rucom Verified', 'Certificate of Origin', 'RUT Certified', 'Gov. Compliant'].map(
               (item) => (
-                <span key={item} className="flex items-center gap-2 text-xs text-white/50">
-                  <span className="w-4 h-4 rounded-full bg-accent/30 flex items-center justify-center flex-shrink-0">
+                <span key={item} className="flex items-center gap-2 text-xs text-muted">
+                  <span className="w-4 h-4 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                   </span>
                   {item}
@@ -117,7 +115,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 0.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-white/40"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 text-muted"
       >
         <span className="text-xs tracking-widest uppercase">Scroll</span>
         <motion.div
