@@ -17,7 +17,7 @@ export default function Footer() {
                 alt="Fast Track Gold"
                 width={140}
                 height={140}
-                className="h-14 w-auto object-contain"
+                className="h-20 w-auto object-contain"
               />
             </Link>
             <p className="text-muted text-sm leading-relaxed max-w-sm mb-6">

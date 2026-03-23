@@ -40,7 +40,7 @@ export default function MobileMenu({ open, onClose }: Props) {
                 alt="Fast Track Gold"
                 width={120}
                 height={120}
-                className="h-10 w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
               <button
                 onClick={onClose}
