@@ -11,9 +11,14 @@ const values = [
 
 export default function About() {
   return (
-    <section className="bg-bg py-24 lg:py-40">
-      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-bg py-24 lg:py-40 relative overflow-hidden">
+
+      {/* ── Ambient glow — dark mode only, desktop only ── */}
+      <div className="glow-accent hidden md:block w-[500px] h-[500px] top-1/2 right-0 translate-x-1/3 -translate-y-1/2" />
+
+      <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 lg:gap-24 items-center">
+
           {/* Text */}
           <div>
             <AnimatedSection>
@@ -40,13 +45,18 @@ export default function About() {
                 perfectly documented.
               </p>
 
-              {/* Values */}
+              {/* Values — with corner bracket marks */}
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
                 {values.map(({ icon: Icon, label, desc }) => (
                   <div
                     key={label}
-                    className="p-4 rounded-xl bg-bg-secondary border border-border hover:border-primary/30 transition-colors"
+                    className="relative p-4 rounded-xl bg-bg-secondary border border-border hover:border-primary/30 transition-colors group"
                   >
+                    {/* Corner brackets */}
+                    <span className="hidden md:block absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                    <span className="hidden md:block absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                    <span className="hidden md:block absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                    <span className="hidden md:block absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
                     <Icon className="w-5 h-5 text-primary mb-2" />
                     <p className="font-display font-semibold text-base mb-1">{label}</p>
                     <p className="text-xs text-muted leading-relaxed">{desc}</p>
@@ -84,7 +94,7 @@ export default function About() {
                 <p className="text-xs text-primary mt-1">Colombia 🇨🇴</p>
               </div>
               {/* Accent ring */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full border border-primary/20 pointer-events-none" />
+              <div className="hidden md:block absolute -top-4 -right-4 w-24 h-24 rounded-full border border-primary/20 pointer-events-none" aria-hidden="true" />
             </div>
           </AnimatedSection>
         </div>

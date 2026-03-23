@@ -160,12 +160,12 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
+  animation: shimmer-rtl 3.5s linear infinite;
 }
 
-@keyframes shimmer {
-  0%   { background-position: 0% center; }
-  100% { background-position: 200% center; }
+@keyframes shimmer-rtl {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 /* Marquee */
@@ -244,4 +244,171 @@ body {
     color-mix(in srgb, var(--color-bg) 25%, transparent) 35%,
     transparent 100%
   );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   💎 PREMIUM VISUAL DESIGN SYSTEM
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── 1. Vertical Architectural Grid Lines (Global) ── */
+/* Applied via .page-grid on body in layout.tsx        */
+/* 4 vertical lines across full page, fixed, desktop only */
+@media (min-width: 768px) {
+  .page-grid {
+    background-image: linear-gradient(
+      to right,
+      rgba(201, 168, 76, 0.04) 1px,
+      transparent 1px
+    );
+    background-size: 25% 100%;
+    background-attachment: fixed;
+  }
+  [data-theme="light"] .page-grid {
+    background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px
+    );
+  }
+}
+
+/* ── 2. Shimmer Sweep — right to left (brand gold) ── */
+/* Apply to ONE keyword per hero only                  */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    #c9a84c 0%,
+    #f0d878 35%,
+    #e8cc7a 50%,
+    #c9a84c 65%,
+    #9a7a2e 80%,
+    #c9a84c 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 3.5s linear infinite;
+}
+@keyframes shimmer-sweep {
+  0%   { background-position: 250% center; }
+  100% { background-position: -250% center; }
+}
+
+/* ── 3. Grain texture — reduce in light mode ── */
+.grain::after {
+  opacity: 0.025;
+}
+[data-theme="light"] .grain::after {
+  opacity: 0.012;
+}
+
+/* ── 4. Corner Bracket Marks on cards ── */
+/* Add .bracket-card to any card wrapper  */
+.bracket-card {
+  position: relative;
+}
+.bracket-card::before,
+.bracket-card::after,
+.bracket-card > .bracket-tl,
+.bracket-card > .bracket-tr,
+.bracket-card > .bracket-bl,
+.bracket-card > .bracket-br {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+  border-color: rgba(201, 168, 76, 0.5);
+  border-style: solid;
+}
+/* Use span elements for corners inside card */
+.bracket-card .bk-tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+.bracket-card .bk-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
+.bracket-card .bk-bl { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
+.bracket-card .bk-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+.bracket-card:hover .bk-tl,
+.bracket-card:hover .bk-tr,
+.bracket-card:hover .bk-bl,
+.bracket-card:hover .bk-br {
+  opacity: 1;
+}
+
+/* ── 5. Section Divider with Center Diamond ── */
+.section-divider {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1px;
+  width: 100%;
+  background: var(--color-border);
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  opacity: 0.5;
+  transform: rotate(45deg);
+  border-radius: 1px;
+}
+
+/* ── 6. Diagonal accent lines (hero only, desktop) ── */
+@media (min-width: 768px) {
+  .hero-diagonal {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(201, 168, 76, 0.018) 60px,
+      rgba(201, 168, 76, 0.018) 61px
+    );
+  }
+  [data-theme="light"] .hero-diagonal {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(0, 0, 0, 0.012) 60px,
+      rgba(0, 0, 0, 0.012) 61px
+    );
+  }
+}
+
+/* ── 7. Radial ambient glow helper classes ── */
+.glow-primary {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+}
+.glow-accent {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(ellipse, rgba(46,125,82,0.07) 0%, transparent 70%);
+  pointer-events: none;
+  filter: blur(60px);
+}
+[data-theme="light"] .glow-primary,
+[data-theme="light"] .glow-accent {
+  display: none;
+}
+
+/* ── 8. Reduced motion — respect user preference ── */
+@media (prefers-reduced-motion: reduce) {
+  .text-shimmer,
+  .text-gold-shimmer {
+    animation: none;
+    background-position: 0% center;
+  }
+  .marquee-track {
+    animation: none;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
 }

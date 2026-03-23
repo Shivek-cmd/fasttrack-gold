@@ -1,17 +1,34 @@
+'use client'
 import Link from 'next/link'
 import { ArrowRight, MessageCircle } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import { SITE_CONFIG } from '@/constants'
 
 export default function CTA() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
   return (
     <section className="relative bg-primary/5 border-y border-primary/15 py-24 lg:py-32 overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] rounded-full bg-primary/8 blur-3xl pointer-events-none" />
 
-      {/* Decorative rings */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-primary/8 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-primary/5 pointer-events-none" />
+      {/* ── Radial ambient glow ── */}
+      <div className="glow-primary hidden md:block w-[700px] h-[400px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+
+      {/* ── Concentric SVG rings — desktop only, animated scale-in ── */}
+      <motion.svg
+        ref={ref}
+        className="absolute inset-0 w-full h-full pointer-events-none select-none hidden md:block"
+        aria-hidden="true"
+        initial={{ opacity: 0, scale: 0.82 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 1.4 }}
+      >
+        <circle cx="50%" cy="50%" r="180" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.10" />
+        <circle cx="50%" cy="50%" r="280" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.07" />
+        <circle cx="50%" cy="50%" r="400" fill="none" stroke="currentColor" strokeWidth="1" opacity="0.04" />
+      </motion.svg>
 
       <div className="relative z-10 max-w-container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <AnimatedSection>
@@ -40,7 +57,7 @@ export default function CTA() {
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
             <a
-              href={`https://wa.me/${SITE_CONFIG.social.whatsapp.replace(/\D/g, '')}`}
+              href={SITE_CONFIG.social.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2.5 h-14 px-10 rounded-lg border border-border hover:border-primary text-text font-medium text-base transition-colors"

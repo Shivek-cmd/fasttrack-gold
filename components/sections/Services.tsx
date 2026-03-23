@@ -10,7 +10,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 
 const container = {
   hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  show:   { opacity: 1, transition: { staggerChildren: 0.1 } },
 }
 const item = {
   hidden: { opacity: 0, y: 20 },
@@ -21,6 +21,7 @@ export default function Services() {
   return (
     <section className="bg-bg-secondary py-24 lg:py-40">
       <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-16">
           <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">
@@ -55,8 +56,15 @@ export default function Services() {
                 variants={item}
                 whileHover={{ y: -6, scale: 1.02 }}
                 transition={{ duration: 0.3 }}
-                className="p-8 rounded-2xl bg-bg border border-border hover:border-primary/30 shadow-card hover:shadow-glow transition-all cursor-default group"
+                className="relative p-8 rounded-2xl bg-bg border border-border hover:border-primary/30
+                  shadow-card hover:shadow-glow transition-all cursor-default group"
               >
+                {/* ── Corner bracket marks — desktop hover only ── */}
+                <span className="hidden md:block absolute top-3 left-3 w-3 h-3 border-t border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                <span className="hidden md:block absolute top-3 right-3 w-3 h-3 border-t border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                <span className="hidden md:block absolute bottom-3 left-3 w-3 h-3 border-b border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+                <span className="hidden md:block absolute bottom-3 right-3 w-3 h-3 border-b border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
+
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                   {Icon && <Icon className="w-6 h-6 text-primary" />}
                 </div>
