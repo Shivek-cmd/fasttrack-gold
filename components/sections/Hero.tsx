@@ -53,7 +53,7 @@ export default function Hero() {
       <div className="glow-primary hidden md:block w-[600px] h-[500px] top-1/3 -left-20" />
 
       {/* ── Content ── */}
-      <div className="relative z-10 max-w-container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 lg:pb-40">
+      <div className="relative z-10 max-w-container mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-32 lg:pb-40">
         <div className="max-w-2xl">
 
           <motion.div

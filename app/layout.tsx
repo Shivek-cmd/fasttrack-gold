@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
+import MetalsTicker from '@/components/layout/MetalsTicker'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/ui/WhatsAppButton'
 import { SITE_CONFIG } from '@/constants'
@@ -111,6 +112,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to main content
         </a>
 
+        <MetalsTicker />
         <Navbar />
         <main id="main-content">{children}</main>
         <Footer />
