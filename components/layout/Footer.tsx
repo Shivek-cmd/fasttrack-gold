@@ -63,6 +63,9 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li><Link href="/mission" className="text-sm text-muted hover:text-primary transition-colors">Mission</Link></li>
+              <li><Link href="/vision" className="text-sm text-muted hover:text-primary transition-colors">Vision</Link></li>
+              <li><Link href="/compliance" className="text-sm text-muted hover:text-primary transition-colors">Compliance</Link></li>
             </ul>
           </div>
 
@@ -133,10 +136,10 @@ export default function Footer() {
             © {new Date().getFullYear()} {SITE_CONFIG.fullName}. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <Link href="/contact" className="text-xs text-muted hover:text-primary transition-colors">
+            <Link href="/privacy-policy" className="text-xs text-muted hover:text-primary transition-colors">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="text-xs text-muted hover:text-primary transition-colors">
+            <Link href="/terms-of-service" className="text-xs text-muted hover:text-primary transition-colors">
               Terms of Service
             </Link>
           </div>

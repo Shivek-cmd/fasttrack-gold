@@ -121,14 +121,14 @@ export default function AboutPage() {
       </section>
 
       {/* Mission, Vision, Compliance */}
-      <section className="bg-bg-secondary py-24 lg:py-32">
+      <section id="mission-vision-compliance" className="bg-bg-secondary py-24 lg:py-32">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {sections.map((s, i) => {
               const Icon = s.icon
               return (
-                <AnimatedSection key={s.id} delay={i * 0.12}>
-                  <div className="p-8 rounded-2xl bg-bg border border-border hover:border-primary/20 transition-colors h-full">
+                <AnimatedSection key={s.id} delay={i * 0.12} className="scroll-mt-32">
+                  <div id={s.id} className="p-8 rounded-2xl bg-bg border border-border hover:border-primary/20 transition-colors h-full scroll-mt-32">
                     <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center mb-5`}>
                       <Icon className={`w-6 h-6 ${s.color}`} />
                     </div>

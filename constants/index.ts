@@ -19,15 +19,15 @@ export const SITE_CONFIG = {
 }
 
 export const NAV_LINKS = [
-  { label: 'Home',         href: '/' },
+  { label: 'Home', href: '/' },
   {
     label: 'About',
     href: '/about',
     children: [
       { label: 'Our Company', href: '/about' },
-      { label: 'Mission',     href: '/about#mission' },
-      { label: 'Vision',      href: '/about#vision' },
-      { label: 'Compliance',  href: '/about#compliance' },
+      { label: 'Mission',     href: '/mission' },
+      { label: 'Vision',      href: '/vision' },
+      { label: 'Compliance',  href: '/compliance' },
       { label: 'Services',    href: '/services' },
     ],
   },
