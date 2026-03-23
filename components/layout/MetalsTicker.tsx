@@ -47,9 +47,9 @@ export default function MetalsTicker() {
 
   async function fetchPrices() {
     try {
-      const res = await fetch('https://metals.live/api/latest', {
+      const res = await fetch('/api/metals', {
         cache: 'no-store',
-        signal: AbortSignal.timeout(6000),
+        signal: AbortSignal.timeout(8000),
       })
       if (!res.ok) throw new Error('API error')
       const data = await res.json()
