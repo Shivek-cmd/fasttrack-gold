@@ -59,11 +59,6 @@ export default function Services() {
                 className="relative p-8 rounded-2xl bg-bg border border-border hover:border-primary/30
                   shadow-card hover:shadow-glow transition-all cursor-default group"
               >
-                {/* ── Corner bracket marks — desktop hover only ── */}
-                <span className="hidden md:block absolute top-3 left-3 w-3 h-3 border-t border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                <span className="hidden md:block absolute top-3 right-3 w-3 h-3 border-t border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                <span className="hidden md:block absolute bottom-3 left-3 w-3 h-3 border-b border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                <span className="hidden md:block absolute bottom-3 right-3 w-3 h-3 border-b border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
 
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
                   {Icon && <Icon className="w-6 h-6 text-primary" />}

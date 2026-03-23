@@ -303,38 +303,6 @@ body {
   opacity: 0.012;
 }
 
-/* ── 4. Corner Bracket Marks on cards ── */
-/* Add .bracket-card to any card wrapper  */
-.bracket-card {
-  position: relative;
-}
-.bracket-card::before,
-.bracket-card::after,
-.bracket-card > .bracket-tl,
-.bracket-card > .bracket-tr,
-.bracket-card > .bracket-bl,
-.bracket-card > .bracket-br {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  opacity: 0;
-  transition: opacity 300ms, transform 300ms;
-  border-color: rgba(201, 168, 76, 0.5);
-  border-style: solid;
-}
-/* Use span elements for corners inside card */
-.bracket-card .bk-tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
-.bracket-card .bk-tr { top: 10px; right: 10px; border-width: 1px 1px 0 0; }
-.bracket-card .bk-bl { bottom: 10px; left: 10px; border-width: 0 0 1px 1px; }
-.bracket-card .bk-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
-.bracket-card:hover .bk-tl,
-.bracket-card:hover .bk-tr,
-.bracket-card:hover .bk-bl,
-.bracket-card:hover .bk-br {
-  opacity: 1;
-}
-
 /* ── 5. Section Divider with Center Diamond ── */
 .section-divider {
   position: relative;

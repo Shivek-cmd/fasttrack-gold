@@ -52,11 +52,6 @@ export default function About() {
                     key={label}
                     className="relative p-4 rounded-xl bg-bg-secondary border border-border hover:border-primary/30 transition-colors group"
                   >
-                    {/* Corner brackets */}
-                    <span className="hidden md:block absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                    <span className="hidden md:block absolute top-2 right-2 w-2.5 h-2.5 border-t border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                    <span className="hidden md:block absolute bottom-2 left-2 w-2.5 h-2.5 border-b border-l border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
-                    <span className="hidden md:block absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-primary/0 group-hover:border-primary/40 transition-all duration-300" />
                     <Icon className="w-5 h-5 text-primary mb-2" />
                     <p className="font-display font-semibold text-base mb-1">{label}</p>
                     <p className="text-xs text-muted leading-relaxed">{desc}</p>
