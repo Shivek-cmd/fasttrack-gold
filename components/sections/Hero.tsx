@@ -1,7 +1,107 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { ArrowRight, ChevronDown } from 'lucide-react'
+
+// ─── Config ────────────────────────────────────────────────────
+const TOTAL_FRAMES = 151
+const FPS          = 30
+const FRAME_PATH   = '/hero-frames/ezgif-frame-'
+const FRAME_EXT    = '.png'
+
+function frameSrc(n: number) {
+  return `${FRAME_PATH}${String(n).padStart(3, '0')}${FRAME_EXT}`
+}
+
+// ─── Canvas frame player ────────────────────────────────────────
+function FramePlayer() {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const frameRef  = useRef(0)
+  const imagesRef = useRef<HTMLImageElement[]>([])
+  const animIdRef = useRef<number>(0)
+  const [loaded, setLoaded] = useState(false)
+
+  // Preload all frames
+  useEffect(() => {
+    let loadedCount = 0
+    const imgs: HTMLImageElement[] = new Array(TOTAL_FRAMES)
+
+    for (let i = 1; i <= TOTAL_FRAMES; i++) {
+      const img = new window.Image()
+      img.src = frameSrc(i)
+      img.onload = () => {
+        loadedCount++
+        if (loadedCount === TOTAL_FRAMES) {
+          imagesRef.current = imgs
+          setLoaded(true)
+        }
+      }
+      img.onerror = () => {
+        loadedCount++
+        if (loadedCount === TOTAL_FRAMES) {
+          imagesRef.current = imgs
+          setLoaded(true)
+        }
+      }
+      imgs[i - 1] = img
+    }
+  }, [])
+
+  // Start animation once loaded
+  useEffect(() => {
+    if (!loaded) return
+    const canvas = canvasRef.current
+    if (!canvas) return
+    const ctx = canvas.getContext('2d')
+    if (!ctx) return
+
+    let lastTime = 0
+    const interval = 1000 / FPS
+
+    const draw = (timestamp: number) => {
+      if (timestamp - lastTime >= interval) {
+        const img = imagesRef.current[frameRef.current]
+        if (img?.complete && img.naturalWidth > 0) {
+          canvas.width  = img.naturalWidth
+          canvas.height = img.naturalHeight
+          ctx.drawImage(img, 0, 0)
+        }
+        if (frameRef.current < TOTAL_FRAMES - 1) {
+          frameRef.current++
+          animIdRef.current = requestAnimationFrame(draw)
+        }
+        // stops on last frame — no loop
+        lastTime = timestamp
+      } else {
+        animIdRef.current = requestAnimationFrame(draw)
+      }
+    }
+
+    animIdRef.current = requestAnimationFrame(draw)
+    return () => cancelAnimationFrame(animIdRef.current)
+  }, [loaded])
+
+  return (
+    <>
+      {/* Pure black shown while frames load — NO fallback image */}
+      <div
+        className="absolute inset-0 bg-black transition-opacity duration-700"
+        style={{ opacity: loaded ? 0 : 1, pointerEvents: 'none' }}
+      />
+      {/* Canvas fades in once first frame is ready */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full object-cover object-center"
+        style={{
+          opacity: loaded ? 1 : 0,
+          transition: 'opacity 0.8s',
+          filter: 'brightness(1.3) contrast(1.2)',
+        }}
+      />
+    </>
+  )
+}
 
 // ─── Staggered word reveal ──────────────────────────────────────
 const wordVariants = {
@@ -33,37 +133,9 @@ export default function Hero() {
   return (
     <section className="relative w-full min-h-screen overflow-hidden flex items-center">
 
-      {/* ── Video background ── */}
-      <div className="absolute inset-0 z-0 bg-black">
-        {/*
-          INSTRUCTIONS:
-          1. Take your 151 PNG frames and convert them to a single MP4 using ezgif:
-             ezgif.com → "GIF Maker" → upload all frames → "Make GIF" →
-             then "Video" tab → download MP4
-             OR use FFmpeg locally:
-             ffmpeg -framerate 30 -i ezgif-frame-%03d.png -c:v libx264 -crf 20 -pf yuv420p -movflags faststart hero.mp4
-
-          2. Place the file at: public/hero-video.mp4
-          3. That's it — the video tag below handles everything natively.
-
-          The video plays once and stops on the last frame.
-          autoPlay + muted + playsInline are required for browsers to autoplay.
-        */}
-        <video
-          autoPlay
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover object-center"
-          style={{ filter: 'brightness(1.3) contrast(1.2)' }}
-          onEnded={(e) => {
-            // Pause on last frame — do not loop
-            const vid = e.currentTarget
-            vid.pause()
-          }}
-        >
-          <source src="/hero-video.mp4" type="video/mp4" />
-        </video>
-
+      {/* ── Frame player background ── */}
+      <div className="absolute inset-0 z-0">
+        <FramePlayer />
         <div className="absolute inset-0 dark-overlay" />
         <div className="absolute inset-0 hero-gradient-lr" />
         <div className="absolute inset-0 hero-gradient-bt" />
