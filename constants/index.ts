@@ -111,7 +111,7 @@ export const TESTIMONIALS = [
     name: 'Sofia Vargas',
     title: 'Jewellery Importer, Switzerland',
     avatar:
-      'https://images.unsplash.com/photo-1494790108755-2616b612b77c?auto=format&fit=crop&w=200&q=80',
+      'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=200&q=80',
     rating: 5,
     quote:
       "The quality and traceability of the emeralds we source through Fast Track Gold is second to none. Their compliance process gives us complete confidence.",
