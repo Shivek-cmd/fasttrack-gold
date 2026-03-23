@@ -9,8 +9,8 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 //   frame_001.jpg, frame_002.jpg, frame_003.jpg ... frame_XXX.jpg
 // Set TOTAL_FRAMES to however many frames you have
 // Set FPS to match what you chose in ezgif (10 recommended)
-const TOTAL_FRAMES = 80   // ← change this to your actual frame count
-const FPS          = 10   // ← match what you set in ezgif
+const TOTAL_FRAMES = 151   // ← change this to your actual frame count
+const FPS          = 30   // ← match what you set in ezgif
 const FRAME_PATH   = '/hero-frames/ezgif-frame-'  // prefix before the number
 const FRAME_EXT    = '.png'                 // .jpg or .png
 
@@ -78,7 +78,11 @@ function FramePlayer() {
           canvas.height = imgs[frameRef.current].naturalHeight || canvas.offsetHeight
           ctx.drawImage(imgs[frameRef.current], 0, 0, canvas.width, canvas.height)
         }
-        frameRef.current = (frameRef.current + 1) % TOTAL_FRAMES
+        if (frameRef.current < TOTAL_FRAMES - 1) {
+          frameRef.current = frameRef.current + 1
+        } else {
+          cancelAnimationFrame(animId)
+        }
         lastTime = timestamp
       }
       animId = requestAnimationFrame(draw)
@@ -106,7 +110,7 @@ function FramePlayer() {
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full object-cover object-center"
-        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.8s' }}
+        style={{ opacity: loaded ? 1 : 0, transition: 'opacity 0.8s',  filter: 'brightness(1.3) contrast(1.2)',  }}
       />
       {/* Placeholder shown while frames load */}
       {!loaded && (
