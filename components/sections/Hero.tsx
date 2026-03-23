@@ -11,7 +11,7 @@ import { ArrowRight, ChevronDown } from 'lucide-react'
 // Set FPS to match what you chose in ezgif (10 recommended)
 const TOTAL_FRAMES = 80   // ← change this to your actual frame count
 const FPS          = 10   // ← match what you set in ezgif
-const FRAME_PATH   = '/hero-frames/frame_'  // prefix before the number
+const FRAME_PATH   = '/hero-frames/ezgif-frame-'  // prefix before the number
 const FRAME_EXT    = '.png'                 // .jpg or .png
 
 // Pad frame number to 3 digits: 1 → "001"
