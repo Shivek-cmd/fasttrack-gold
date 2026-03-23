@@ -3,7 +3,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, ChevronDown } from 'lucide-react'
 
-// ─── Staggered word reveal ──────────────────────────────────────
 const wordVariants = {
   hidden: { opacity: 0, y: 28 },
   show:   { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -57,7 +56,6 @@ export default function Hero() {
       <div className="relative z-10 max-w-container mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32 lg:pb-40">
         <div className="max-w-2xl">
 
-          {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -68,7 +66,6 @@ export default function Hero() {
             Colombia&apos;s Premier Mineral Exporter
           </motion.div>
 
-          {/* Headline */}
           <motion.h1
             initial="hidden"
             animate="show"
@@ -83,7 +80,6 @@ export default function Hero() {
             <StaggerLine text="& Emeralds" className="block" />
           </motion.h1>
 
-          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,7 +91,6 @@ export default function Hero() {
             integrity.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -117,28 +112,24 @@ export default function Hero() {
             </Link>
           </motion.div>
 
-          {/* Trust strip */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9 }}
             className="flex flex-wrap items-center gap-5 mt-12 pt-8 border-t border-border"
           >
-            {['Rucom Verified', 'Certificate of Origin', 'RUT Certified', 'Gov. Compliant'].map(
-              (item) => (
-                <span key={item} className="flex items-center gap-2 text-xs text-muted">
-                  <span className="w-4 h-4 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-                  </span>
-                  {item}
+            {['Rucom Verified', 'Certificate of Origin', 'RUT Certified', 'Gov. Compliant'].map((item) => (
+              <span key={item} className="flex items-center gap-2 text-xs text-muted">
+                <span className="w-4 h-4 rounded-full bg-accent/20 flex items-center justify-center flex-shrink-0">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent" />
                 </span>
-              ),
-            )}
+                {item}
+              </span>
+            ))}
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
