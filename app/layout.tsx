@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     'Colombian emeralds',
   ],
   authors: [{ name: SITE_CONFIG.fullName }],
+  category: 'business',
   robots: {
     index: true,
     follow: true,

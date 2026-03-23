@@ -1,6 +1,7 @@
 'use client'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { X } from 'lucide-react'
 import { NAV_LINKS } from '@/constants'
 
@@ -34,9 +35,13 @@ export default function MobileMenu({ open, onClose }: Props) {
           >
             {/* Header */}
             <div className="flex items-center justify-between p-5 border-b border-border">
-              <span className="font-display font-semibold text-lg">
-                Fast Track <span className="text-primary">Gold</span>
-              </span>
+              <Image
+                src="/logo.png"
+                alt="Fast Track Gold"
+                width={120}
+                height={120}
+                className="h-10 w-auto object-contain"
+              />
               <button
                 onClick={onClose}
                 aria-label="Close menu"

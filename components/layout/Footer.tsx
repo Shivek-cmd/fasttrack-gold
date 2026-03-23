@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from 'lucide-react'
 import { SITE_CONFIG, NAV_LINKS } from '@/constants'
 
@@ -10,13 +11,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-sm bg-primary flex items-center justify-center">
-                <span className="text-black font-display font-bold text-sm">FT</span>
-              </div>
-              <span className="font-display font-semibold text-xl text-text">
-                Fast Track <span className="text-primary">Gold</span>
-              </span>
+            <Link href="/" className="inline-flex items-center mb-4">
+              <Image
+                src="/logo.png"
+                alt="Fast Track Gold"
+                width={140}
+                height={140}
+                className="h-14 w-auto object-contain"
+              />
             </Link>
             <p className="text-muted text-sm leading-relaxed max-w-sm mb-6">
               {SITE_CONFIG.fullName} — Premier precious minerals exporter based in Palmira, Valle

@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 import { NAV_LINKS, SITE_CONFIG } from '@/constants'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 import MobileMenu from './MobileMenu'
@@ -30,15 +31,15 @@ export default function Navbar() {
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative w-8 h-8">
-                <div className="w-8 h-8 rounded-sm bg-primary flex items-center justify-center">
-                  <span className="text-black font-display font-bold text-sm">FT</span>
-                </div>
-              </div>
-              <span className="font-display font-semibold text-lg text-text tracking-tight hidden sm:block">
-                Fast Track <span className="text-primary">Gold</span>
-              </span>
+            <Link href="/" className="flex items-center group">
+              <Image
+                src="/logo.png"
+                alt="Fast Track Gold"
+                width={120}
+                height={120}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </Link>
 
             {/* Desktop Nav */}
