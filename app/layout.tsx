@@ -34,6 +34,22 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  // ── Complete favicon set ──
+  icons: {
+    icon: [
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon.ico' },
+    ],
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'android-chrome-192x192', url: '/icons/android-chrome-192x192.png' },
+      { rel: 'android-chrome-512x512', url: '/icons/android-chrome-512x512.png' },
+    ],
+  },
+  manifest: '/icons/site.webmanifest',
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -64,18 +80,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {/* GTM — loaded as raw script to avoid next/script restrictions in <head> */}
+        {/* GTM */}
         {/* eslint-disable-next-line @next/next/next-script-for-ga */}
         <script id="gtm-init" dangerouslySetInnerHTML={{ __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema()) }}
         />
-        <link rel="icon" href="/icons/favicon.ico" />
+        {/* Favicon — belt + suspenders (metadata API + direct link tags) */}
+        <link rel="icon" href="/icons/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icons/favicon-32x32.png" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/icons/favicon-16x16.png" type="image/png" sizes="16x16" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <link rel="manifest" href="/icons/site.webmanifest" />
+        <meta name="theme-color" content="#080807" />
+        <meta name="msapplication-TileColor" content="#080807" />
       </head>
       <body className="grain page-grid">
-        {/* GTM noscript */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

@@ -1,0 +1,13 @@
+{
+  "name": "Fast Track Gold",
+  "short_name": "FTGold",
+  "description": "Colombia's premier precious minerals exporter — gold and emeralds, fully certified.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080807",
+  "theme_color": "#C9A84C",
+  "icons": [
+    { "src": "/icons/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
